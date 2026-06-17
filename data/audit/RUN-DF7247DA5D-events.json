@@ -1,0 +1,50 @@
+[
+  {
+    "agent": "Supervisor Agent",
+    "action": "plan",
+    "detail": "Classified issue as refund_delay and created execution plan.",
+    "timestamp": "2026-06-17 10:56:52.889729+00:00"
+  },
+  {
+    "agent": "Customer Agent",
+    "action": "retrieve_customer",
+    "detail": "Customer found.",
+    "timestamp": "2026-06-17 10:56:52.903789+00:00"
+  },
+  {
+    "agent": "Booking/Order Agent",
+    "action": "retrieve_order_state",
+    "detail": "Booking=True, refund=True.",
+    "timestamp": "2026-06-17 10:56:52.905223+00:00"
+  },
+  {
+    "agent": "Knowledge Agent",
+    "action": "retrieve_context",
+    "detail": "Retrieved 4 policy and case documents.",
+    "timestamp": "2026-06-17 10:56:52.906235+00:00"
+  },
+  {
+    "agent": "Resolution Agent",
+    "action": "decide",
+    "detail": "Refund has been pending for 12 days; policy threshold is 7 days for proactive escalation.",
+    "timestamp": "2026-06-17 10:56:52.906539+00:00"
+  },
+  {
+    "agent": "Approval Agent",
+    "action": "approve",
+    "detail": "Approval status: auto_approved.",
+    "timestamp": "2026-06-17 10:56:52.906539+00:00"
+  },
+  {
+    "agent": "Execution Agent",
+    "action": "create_incident",
+    "detail": "Created incident INC-405FE632.",
+    "timestamp": "2026-06-17 10:56:52.906539+00:00"
+  },
+  {
+    "agent": "Verification Agent",
+    "action": "verify",
+    "detail": "{\"ticket_created\": true, \"ticket_status\": \"open\", \"policy_refs_checked\": 2, \"customer_record_verified\": true, \"audit_trail_ready\": true, \"sla_target\": \"24 business hours\"}",
+    "timestamp": "2026-06-17 10:56:52.906539+00:00"
+  }
+]

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ERA Agent Workspace</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <div class="product-shell">
+      <aside class="left-rail">
+        <div class="brand">
+          <div class="brand-mark">ER</div>
+          <div>
+            <h1>ERA</h1>
+            <p>Support Workspace</p>
+          </div>
+        </div>
+
+        <section class="rail-card">
+          <p class="eyebrow">Customer</p>
+          <label for="customerId">Customer ID</label>
+          <input id="customerId" value="CUST-1001">
+          <label for="channel">Channel</label>
+          <select id="channel">
+            <option value="chat">Chat</option>
+            <option value="email">Email</option>
+            <option value="voice">Voice</option>
+          </select>
+          <div class="customer-strip">
+            <span>Tier</span>
+            <strong id="customerTier">Platinum</strong>
+          </div>
+        </section>
+
+        <section class="rail-card">
+          <p class="eyebrow">Today</p>
+          <div class="stats-grid">
+            <div><strong id="resolvedCount">0</strong><span>Resolved</span></div>
+            <div><strong id="queryCount">0</strong><span>Queries</span></div>
+            <div><strong id="ticketCount">0</strong><span>Tickets</span></div>
+            <div><strong id="pendingCount">0</strong><span>Review</span></div>
+          </div>
+        </section>
+
+        <section class="rail-card">
+          <p class="eyebrow">Manager Review</p>
+          <label for="autonomyMode">Review policy</label>
+          <select id="autonomyMode">
+            <option>Balanced</option>
+            <option>Strict approvals</option>
+            <option>High automation</option>
+          </select>
+          <label for="approver">Reviewer</label>
+          <input id="approver" value="Ops Manager">
+          <label for="approvalNote">Internal note</label>
+          <textarea id="approvalNote" rows="3" placeholder="Reason, exception, or manager note"></textarea>
+          <button id="approveBtn" class="approve-btn" type="button" disabled>Approve and execute</button>
+          <p id="approvalHint" class="hint">No manual approval waiting.</p>
+        </section>
+
+        <section class="rail-card">
+          <p class="eyebrow">Sample Cases</p>
+          <div class="scenario-list">
+            <button class="scenario" data-message="My refund is delayed.">Refund delay</button>
+            <button class="scenario" data-message="I was charged twice on my bill.">Billing dispute</button>
+            <button class="scenario" data-message="My baggage did not arrive at the destination airport.">Baggage issue</button>
+            <button class="scenario" data-message="My flight has been delayed for three hours and I need help.">Flight delay</button>
+            <button class="scenario" data-message="I cannot login to my account and need recovery.">Account recovery</button>
+          </div>
+        </section>
+
+        <section class="rail-card compact">
+          <p class="eyebrow">Status</p>
+          <div class="health-row"><span class="pulse"></span><span id="healthText">Checking API</span></div>
+        </section>
+      </aside>
+
+      <main class="chat-workspace">
+        <header class="workspace-header">
+          <div>
+            <p class="eyebrow">Live Support</p>
+            <h2>Customer conversation</h2>
+          </div>
+          <div class="header-actions">
+            <button id="newChatBtn" class="ghost-btn" type="button">New case</button>
+            <button id="loadRunsBtn" class="ghost-btn" type="button">Runs</button>
+          </div>
+        </header>
+
+        <section id="chatStream" class="chat-stream" aria-live="polite">
+          <article class="message agent">
+            <div class="avatar">AI</div>
+            <div class="bubble">
+              <strong>ERA Assistant</strong>
+              <p>Tell me the customer's issue. I will investigate it, recommend the best action, create a ticket when allowed, and ask for review when needed.</p>
+            </div>
+          </article>
+        </section>
+
+        <form id="chatForm" class="composer">
+          <textarea id="messageInput" rows="2" placeholder="Type a customer issue, for example: My refund is delayed."></textarea>
+          <button id="sendBtn" class="send-btn" type="submit">Send</button>
+        </form>
+      </main>
+
+      <aside class="inspector">
+        <section class="inspector-card hero">
+          <div class="status-row">
+            <span id="issueType" class="status-pill">No case</span>
+            <span id="approval" class="status-pill muted">Waiting</span>
+          </div>
+          <h3 id="decisionTitle">Resolution will appear here</h3>
+          <p id="decisionRationale">The agent will explain why it selected a playbook and whether a human approval is required.</p>
+          <div class="score-grid">
+            <div><span>Confidence</span><strong id="confidence">--</strong></div>
+            <div><span>Risk</span><strong id="risk">--</strong></div>
+            <div><span>SLA</span><strong id="sla">--</strong></div>
+            <div><span>Ticket</span><strong id="ticket">--</strong></div>
+          </div>
+        </section>
+
+        <section class="inspector-card">
+          <p class="eyebrow">Case Progress</p>
+          <div id="trace" class="timeline"></div>
+        </section>
+
+        <section class="inspector-card">
+          <p class="eyebrow">Policy Matches</p>
+          <div id="evidence" class="evidence-list"></div>
+        </section>
+
+        <section class="inspector-card two-col">
+          <div>
+            <p class="eyebrow">Risk Flags</p>
+            <div id="riskFlags" class="chips"></div>
+          </div>
+          <div>
+            <p class="eyebrow">Next Actions</p>
+            <ul id="nextActions" class="action-list"></ul>
+          </div>
+        </section>
+
+        <section class="inspector-card">
+          <p class="eyebrow">Recent Runs</p>
+          <div id="runs" class="runs-list"></div>
+        </section>
+      </aside>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

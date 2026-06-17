@@ -1,0 +1,50 @@
+[
+  {
+    "agent": "Supervisor Agent",
+    "action": "plan",
+    "detail": "Classified issue as billing and created execution plan.",
+    "timestamp": "2026-06-17 11:12:44.370936+00:00"
+  },
+  {
+    "agent": "Customer Agent",
+    "action": "retrieve_customer",
+    "detail": "Customer found.",
+    "timestamp": "2026-06-17 11:12:44.372937+00:00"
+  },
+  {
+    "agent": "Booking/Order Agent",
+    "action": "retrieve_order_state",
+    "detail": "Booking=True, refund=True.",
+    "timestamp": "2026-06-17 11:12:44.374146+00:00"
+  },
+  {
+    "agent": "Knowledge Agent",
+    "action": "retrieve_context",
+    "detail": "Retrieved 4 policy and case documents.",
+    "timestamp": "2026-06-17 11:12:44.375145+00:00"
+  },
+  {
+    "agent": "Resolution Agent",
+    "action": "decide",
+    "detail": "Billing issues require transaction matching and fraud-risk checks before financial reversal.",
+    "timestamp": "2026-06-17 11:12:44.375145+00:00"
+  },
+  {
+    "agent": "Approval Agent",
+    "action": "approve",
+    "detail": "Approval status: manual_required.",
+    "timestamp": "2026-06-17 11:12:44.375145+00:00"
+  },
+  {
+    "agent": "Execution Agent",
+    "action": "hold",
+    "detail": "Manual approval required before execution.",
+    "timestamp": "2026-06-17 11:12:44.376145+00:00"
+  },
+  {
+    "agent": "Verification Agent",
+    "action": "verify",
+    "detail": "{\"ticket_created\": false, \"ticket_status\": null, \"policy_refs_checked\": 1, \"customer_record_verified\": true, \"audit_trail_ready\": true, \"sla_target\": \"48 hours\"}",
+    "timestamp": "2026-06-17 11:12:44.376145+00:00"
+  }
+]

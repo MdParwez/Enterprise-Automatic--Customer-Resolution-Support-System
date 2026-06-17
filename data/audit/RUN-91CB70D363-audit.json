@@ -1,0 +1,207 @@
+{
+  "run_id": "RUN-91CB70D363",
+  "issue_type": "billing",
+  "decision": {
+    "issue_type": "billing",
+    "recommended_action": "Create payments reconciliation ticket and hold reversal until duplicate-charge verification completes",
+    "rationale": "Billing issues require transaction matching and fraud-risk checks before financial reversal.",
+    "risk_level": "high",
+    "compensation_amount": 0.0,
+    "policy_refs": [
+      "Billing Dispute Policy"
+    ],
+    "confidence_score": 0.82,
+    "sla_target": "48 hours",
+    "approval_reason": "Financial reversals are high-risk and require manual approval.",
+    "risk_flags": [
+      "financial_control",
+      "fraud_screening_required"
+    ],
+    "next_best_actions": [
+      "Match transaction IDs",
+      "Check duplicate authorization",
+      "Request manual approver review"
+    ]
+  },
+  "approval_status": "manual_required",
+  "execution_status": "failed",
+  "ticket_id": null,
+  "final_response": "I could not complete the autonomous execution, so this case needs manual review.",
+  "verification": {
+    "ticket_created": false,
+    "ticket_status": null,
+    "policy_refs_checked": 1,
+    "customer_record_verified": true,
+    "audit_trail_ready": true,
+    "sla_target": "48 hours"
+  },
+  "metrics": {
+    "resolution_success_rate": 1.0,
+    "policy_compliance_rate": 1.0,
+    "tool_call_accuracy": 1.0,
+    "reflection_success_rate": 1.0,
+    "average_resolution_time_seconds": 0.007,
+    "customer_satisfaction_score": 4.6,
+    "estimated_cost_per_resolution_usd": 0.04
+  },
+  "events": [
+    {
+      "agent": "Supervisor Agent",
+      "action": "plan",
+      "detail": "Classified issue as billing and created execution plan.",
+      "timestamp": "2026-06-17 10:56:53.488410+00:00"
+    },
+    {
+      "agent": "Customer Agent",
+      "action": "retrieve_customer",
+      "detail": "Customer found.",
+      "timestamp": "2026-06-17 10:56:53.490053+00:00"
+    },
+    {
+      "agent": "Booking/Order Agent",
+      "action": "retrieve_order_state",
+      "detail": "Booking=True, refund=True.",
+      "timestamp": "2026-06-17 10:56:53.491833+00:00"
+    },
+    {
+      "agent": "Knowledge Agent",
+      "action": "retrieve_context",
+      "detail": "Retrieved 4 policy and case documents.",
+      "timestamp": "2026-06-17 10:56:53.491833+00:00"
+    },
+    {
+      "agent": "Resolution Agent",
+      "action": "decide",
+      "detail": "Billing issues require transaction matching and fraud-risk checks before financial reversal.",
+      "timestamp": "2026-06-17 10:56:53.492739+00:00"
+    },
+    {
+      "agent": "Approval Agent",
+      "action": "approve",
+      "detail": "Approval status: manual_required.",
+      "timestamp": "2026-06-17 10:56:53.493041+00:00"
+    },
+    {
+      "agent": "Execution Agent",
+      "action": "hold",
+      "detail": "Manual approval required before execution.",
+      "timestamp": "2026-06-17 10:56:53.493041+00:00"
+    },
+    {
+      "agent": "Verification Agent",
+      "action": "verify",
+      "detail": "{\"ticket_created\": false, \"ticket_status\": null, \"policy_refs_checked\": 1, \"customer_record_verified\": true, \"audit_trail_ready\": true, \"sla_target\": \"48 hours\"}",
+      "timestamp": "2026-06-17 10:56:53.493041+00:00"
+    }
+  ],
+  "plan": [
+    "Retrieve customer context",
+    "Retrieve booking/order and payment state",
+    "Search policies and historical cases",
+    "Recommend compliant resolution",
+    "Approve, execute, verify, and record audit trail"
+  ],
+  "case_context": {
+    "customer": {
+      "customer_id": "CUST-1001",
+      "name": "Aarav Mehta",
+      "email": "aarav.mehta@example.com",
+      "tier": "platinum"
+    },
+    "booking": {
+      "booking_id": "BOOK-7001",
+      "customer_id": "CUST-1001",
+      "status": "cancelled"
+    },
+    "refund": {
+      "refund_id": "REF-9001",
+      "booking_id": "BOOK-7001",
+      "status": "processing",
+      "days_pending": 12
+    },
+    "history_count": 5,
+    "detected_entities": {
+      "mentions_refund": "no",
+      "mentions_delay": "no",
+      "mentions_charge": "yes",
+      "urgency": "normal"
+    }
+  },
+  "evidence": [
+    {
+      "collection": "historical_cases",
+      "title": "Duplicate billing charge",
+      "content": "Duplicate billing was resolved by payment reconciliation, reversal ticket creation, and verification against transaction logs. Outcome: successful.",
+      "score": 3.0
+    },
+    {
+      "collection": "policies",
+      "title": "Billing Dispute Policy",
+      "content": "Duplicate charge and billing dispute cases require payment reconciliation, transaction evidence, charge reversal eligibility checks, and fraud-risk screening.",
+      "score": 2.0
+    },
+    {
+      "collection": "historical_cases",
+      "title": "Delayed refund after cancellation",
+      "content": "A 12-day pending refund was resolved by creating a finance escalation ticket and offering a 25 USD goodwill credit. Outcome: successful.",
+      "score": 1.0
+    },
+    {
+      "collection": "historical_cases",
+      "title": "Payment gateway reconciliation delay",
+      "content": "Refund delayed by gateway reconciliation was routed to payments ops with customer notification. Outcome: successful after verification.",
+      "score": 1.0
+    }
+  ],
+  "automation_trace": [
+    {
+      "stage": "intake",
+      "status": "complete",
+      "summary": "Issue classified and routed by supervisor."
+    },
+    {
+      "stage": "customer_context",
+      "status": "complete",
+      "summary": "Loaded profile, tier, and previous ticket history."
+    },
+    {
+      "stage": "operational_lookup",
+      "status": "complete",
+      "summary": "Resolved customer, booking, refund, and history records from SQLite."
+    },
+    {
+      "stage": "rag",
+      "status": "complete",
+      "summary": "Retrieved 4 policies and similar cases from the knowledge layer."
+    },
+    {
+      "stage": "reasoning",
+      "status": "complete",
+      "summary": "Selected billing playbook with 82% confidence."
+    },
+    {
+      "stage": "approval",
+      "status": "manual_required",
+      "summary": "Financial reversals are high-risk and require manual approval."
+    },
+    {
+      "stage": "execution",
+      "status": "held",
+      "summary": "Execution paused for manual approver review."
+    },
+    {
+      "stage": "verification",
+      "status": "failed",
+      "summary": "Checked ticket state, policy evidence, and audit readiness."
+    }
+  ],
+  "unique_features": [
+    "Policy-grounded autonomous resolution",
+    "Human-in-the-loop approval gates",
+    "Verification before customer response",
+    "Reflection loop for failed execution",
+    "Audit-ready evidence and tool trace",
+    "Multi-domain support: refunds, flights, baggage, billing, subscriptions, accounts"
+  ],
+  "saved_at": "2026-06-17T10:56:53.506915+00:00"
+}
