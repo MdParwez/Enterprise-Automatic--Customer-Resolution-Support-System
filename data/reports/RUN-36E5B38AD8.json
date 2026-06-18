@@ -1,0 +1,12 @@
+{
+  "customer_response": "Hi Aarav Mehta, I investigated your case and created escalation INC-671CE599. Recommended resolution: Create finance escalation incident and offer $25 goodwill credit. Target SLA: 24 business hours.",
+  "metrics": {
+    "resolution_success_rate": 1.0,
+    "policy_compliance_rate": 1.0,
+    "tool_call_accuracy": 1.0,
+    "reflection_success_rate": 1.0,
+    "average_resolution_time_seconds": 0.021,
+    "customer_satisfaction_score": 4.6,
+    "estimated_cost_per_resolution_usd": 0.04
+  }
+}

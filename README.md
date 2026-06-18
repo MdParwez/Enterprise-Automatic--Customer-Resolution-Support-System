@@ -56,6 +56,9 @@ Open:
 Optional variables:
 
 ```text
+AI_PROVIDER=groq
+GROQ_API_KEY=
+GROQ_MODEL=llama-3.3-70b-versatile
 OPENAI_API_KEY=
 AZURE_OPENAI_ENDPOINT=
 AZURE_OPENAI_API_KEY=
@@ -68,7 +71,7 @@ LANGSMITH_API_KEY=
 LANGSMITH_PROJECT=enterprise-resolution-agent
 ```
 
-Without these values, ERA uses local deterministic resolution logic, SQLite, in-memory knowledge retrieval, and mock ServiceNow MCP behavior.
+Without these values, OmniSupport AI uses local deterministic resolution logic, SQLite, in-memory knowledge retrieval, and mock ServiceNow MCP behavior. With `AI_PROVIDER=groq` and `GROQ_API_KEY` set, the Resolution Agent asks Groq to refine the decision while the platform still enforces local risk and workflow controls.
 
 ## UI Capabilities
 

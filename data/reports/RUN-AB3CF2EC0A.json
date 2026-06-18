@@ -1,0 +1,12 @@
+{
+  "customer_response": "Hi Aarav Mehta, I found that your refund is still pending and created escalation INC-A5DF67D9 with our finance team. Based on your account tier and the delay, the recommended resolution is: Create finance escalation incident and offer $25 goodwill credit.",
+  "metrics": {
+    "resolution_success_rate": 1.0,
+    "policy_compliance_rate": 1.0,
+    "tool_call_accuracy": 1.0,
+    "reflection_success_rate": 1.0,
+    "average_resolution_time_seconds": 0.015,
+    "customer_satisfaction_score": 4.6,
+    "estimated_cost_per_resolution_usd": 0.04
+  }
+}

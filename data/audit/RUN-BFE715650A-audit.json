@@ -1,0 +1,294 @@
+{
+  "run_id": "RUN-BFE715650A",
+  "issue_type": "complaint",
+  "decision": {
+    "issue_type": "complaint",
+    "recommended_action": "Update existing ticket INC-141D243E and notify customer with current status",
+    "rationale": "An active ticket already exists, so OmniSupport will avoid duplicate ticket creation and continue tracking progress.",
+    "risk_level": "low",
+    "compensation_amount": 0.0,
+    "policy_refs": [
+      "Compensation Policy",
+      "Baggage Recovery SOP",
+      "Escalation Policy"
+    ],
+    "confidence_score": 0.86,
+    "sla_target": "24 hours",
+    "approval_reason": "Updating an existing support case is low risk.",
+    "risk_flags": [
+      "customer_escalation",
+      "reputation_risk"
+    ],
+    "next_best_actions": [
+      "Check latest internal owner update",
+      "Notify customer with ticket status",
+      "Schedule next status check"
+    ],
+    "ai_provider": "groq:llama-3.3-70b-versatile",
+    "ai_summary": "Customer Aarav Mehta has raised a complaint regarding the service, and a complaint case should be created with a customer care owner assigned and the customer notified."
+  },
+  "approval_status": "auto_approved",
+  "execution_status": "completed",
+  "ticket_id": "INC-141D243E",
+  "final_response": "Hi Aarav Mehta, I investigated your case and found ticket INC-141D243E is now being tracked. Recommended resolution: Update existing ticket INC-141D243E and notify customer with current status. Target SLA: 24 hours.",
+  "verification": {
+    "ticket_created": true,
+    "ticket_status": "open",
+    "policy_refs_checked": 3,
+    "customer_record_verified": true,
+    "audit_trail_ready": true,
+    "sla_target": "24 hours"
+  },
+  "metrics": {
+    "resolution_success_rate": 1.0,
+    "policy_compliance_rate": 1.0,
+    "tool_call_accuracy": 1.0,
+    "reflection_success_rate": 1.0,
+    "average_resolution_time_seconds": 1.262,
+    "customer_satisfaction_score": 4.6,
+    "estimated_cost_per_resolution_usd": 0.04
+  },
+  "events": [
+    {
+      "agent": "Supervisor Agent",
+      "action": "plan",
+      "detail": "Classified issue as complaint and created execution plan.",
+      "timestamp": "2026-06-18 07:23:03.162475+00:00"
+    },
+    {
+      "agent": "Customer Agent",
+      "action": "retrieve_customer",
+      "detail": "Customer found.",
+      "timestamp": "2026-06-18 07:23:03.162475+00:00"
+    },
+    {
+      "agent": "Ticket Agent",
+      "action": "check_existing_tickets",
+      "detail": "Found active ticket INC-141D243E; new ticket creation is not needed yet.",
+      "timestamp": "2026-06-18 07:23:03.162475+00:00"
+    },
+    {
+      "agent": "Booking/Order Agent",
+      "action": "retrieve_order_state",
+      "detail": "Booking=True, refund=True.",
+      "timestamp": "2026-06-18 07:23:03.172944+00:00"
+    },
+    {
+      "agent": "Knowledge Agent",
+      "action": "retrieve_context",
+      "detail": "Retrieved 4 policy and case documents.",
+      "timestamp": "2026-06-18 07:23:03.174247+00:00"
+    },
+    {
+      "agent": "Resolution Agent",
+      "action": "decide",
+      "detail": "An active ticket already exists, so OmniSupport will avoid duplicate ticket creation and continue tracking progress.",
+      "timestamp": "2026-06-18 07:23:04.423488+00:00"
+    },
+    {
+      "agent": "Approval Agent",
+      "action": "approve",
+      "detail": "Approval status: auto_approved.",
+      "timestamp": "2026-06-18 07:23:04.424109+00:00"
+    },
+    {
+      "agent": "Execution Agent",
+      "action": "update_existing_ticket",
+      "detail": "Updated existing ticket INC-141D243E and queued customer notification.",
+      "timestamp": "2026-06-18 07:23:04.424109+00:00"
+    },
+    {
+      "agent": "Verification Agent",
+      "action": "verify",
+      "detail": "{\"ticket_created\": true, \"ticket_status\": \"open\", \"policy_refs_checked\": 3, \"customer_record_verified\": true, \"audit_trail_ready\": true, \"sla_target\": \"24 hours\"}",
+      "timestamp": "2026-06-18 07:23:04.424109+00:00"
+    }
+  ],
+  "plan": [
+    "Understand request and identify customer",
+    "Check active tickets before creating anything new",
+    "Retrieve order, booking, payment, and refund state",
+    "Search policies and historical cases",
+    "Decide whether to update, auto-resolve, escalate, or ask for human help",
+    "Track progress and keep the customer updated"
+  ],
+  "case_context": {
+    "customer": {
+      "customer_id": "CUST-1001",
+      "name": "Aarav Mehta",
+      "email": "aarav.mehta@example.com",
+      "tier": "platinum"
+    },
+    "booking": {
+      "booking_id": "BOOK-7001",
+      "customer_id": "CUST-1001",
+      "status": "cancelled"
+    },
+    "refund": {
+      "refund_id": "REF-9001",
+      "booking_id": "BOOK-7001",
+      "status": "processing",
+      "days_pending": 12
+    },
+    "active_tickets": [
+      {
+        "ticket_id": "INC-141D243E",
+        "customer_id": "CUST-1001",
+        "issue_type": "complaint",
+        "status": "open",
+        "created_at": "2026-06-18T07:22:07.618637+00:00"
+      }
+    ],
+    "existing_ticket": {
+      "ticket_id": "INC-141D243E",
+      "customer_id": "CUST-1001",
+      "issue_type": "complaint",
+      "status": "open",
+      "created_at": "2026-06-18T07:22:07.618637+00:00"
+    },
+    "requested_ticket_id": null,
+    "history_count": 13,
+    "detected_entities": {
+      "mentions_refund": "no",
+      "mentions_delay": "no",
+      "mentions_charge": "no",
+      "urgency": "normal"
+    }
+  },
+  "evidence": [
+    {
+      "collection": "policies",
+      "title": "Compensation Policy",
+      "content": "Low-risk compensation can be auto-approved up to 50 USD for platinum and gold customers when policy conditions are met.",
+      "score": 0.1230914919469964
+    },
+    {
+      "collection": "policies",
+      "title": "Baggage Recovery SOP",
+      "content": "Delayed baggage cases require bag-trace creation, airport ops routing, customer updates every 12 hours, and reimbursement review for essentials.",
+      "score": 0.12309149194699638
+    },
+    {
+      "collection": "policies",
+      "title": "Escalation Policy",
+      "content": "High-risk, fraud-sensitive, or compensation requests above 50 USD require manual approval before execution.",
+      "score": 0.09304842283027963
+    },
+    {
+      "collection": "historical_cases",
+      "title": "Payment gateway reconciliation delay",
+      "content": "Refund delayed by gateway reconciliation was routed to payments ops with customer notification. Outcome: successful after verification.",
+      "score": 0.09304842283027961
+    }
+  ],
+  "automation_trace": [
+    {
+      "stage": "intake",
+      "status": "complete",
+      "summary": "Issue classified and routed by supervisor."
+    },
+    {
+      "stage": "customer_context",
+      "status": "complete",
+      "summary": "Loaded profile, tier, and previous ticket history."
+    },
+    {
+      "stage": "ticket_check",
+      "status": "complete",
+      "summary": "Found active ticket INC-141D243E; new ticket creation is not needed yet."
+    },
+    {
+      "stage": "operational_lookup",
+      "status": "complete",
+      "summary": "Resolved customer, booking, refund, and history records from SQLite."
+    },
+    {
+      "stage": "rag",
+      "status": "complete",
+      "summary": "Retrieved 4 policies and similar cases from the knowledge layer."
+    },
+    {
+      "stage": "reasoning",
+      "status": "complete",
+      "summary": "Selected complaint playbook with 86% confidence using groq:llama-3.3-70b-versatile."
+    },
+    {
+      "stage": "approval",
+      "status": "auto_approved",
+      "summary": "Updating an existing support case is low risk."
+    },
+    {
+      "stage": "execution",
+      "status": "complete",
+      "summary": "Updated existing ticket INC-141D243E and queued customer notification."
+    },
+    {
+      "stage": "verification",
+      "status": "complete",
+      "summary": "Checked ticket state, policy evidence, and audit readiness."
+    }
+  ],
+  "unique_features": [
+    "Investigates before creating tickets",
+    "Routes work across AI agents and human teams",
+    "Uses policy evidence and historical resolutions",
+    "Tracks workflow progress after escalation",
+    "Keeps customer updates separate from internal notes",
+    "Supports SaaS-style expansion across industries"
+  ],
+  "workflow_status": {
+    "phase": "customer_updated",
+    "owner": "Notification Agent",
+    "progress": 100
+  },
+  "internal_updates": [
+    {
+      "team": "Support Operations",
+      "message": "Found active ticket INC-141D243E; new ticket creation is not needed yet.",
+      "status": "monitoring"
+    },
+    {
+      "team": "Customer Care Team",
+      "message": "Updated existing ticket INC-141D243E and queued customer notification.",
+      "status": "assigned"
+    }
+  ],
+  "tool_call_log": [
+    {
+      "tool": "Database MCP",
+      "operation": "get_customer",
+      "status": "success"
+    },
+    {
+      "tool": "Database MCP",
+      "operation": "get_customer_history",
+      "status": "success"
+    },
+    {
+      "tool": "Database MCP",
+      "operation": "get_ticket_and_active_tickets",
+      "status": "found"
+    },
+    {
+      "tool": "Database MCP",
+      "operation": "get_booking",
+      "status": "success"
+    },
+    {
+      "tool": "Database MCP",
+      "operation": "get_refund",
+      "status": "success"
+    },
+    {
+      "tool": "Knowledge Base MCP",
+      "operation": "search_policy_and_cases",
+      "status": "success"
+    },
+    {
+      "tool": "ServiceNow MCP",
+      "operation": "update_existing_ticket",
+      "status": "success"
+    }
+  ],
+  "saved_at": "2026-06-18T07:23:04.470390+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "customer_response": "Hi Aarav Mehta, I investigated your case and found ticket INC-141D243E is now being tracked. Recommended resolution: Create complaint case, assign customer care owner, and notify the customer. Target SLA: 24 hours.",
+  "metrics": {
+    "resolution_success_rate": 1.0,
+    "policy_compliance_rate": 1.0,
+    "tool_call_accuracy": 1.0,
+    "reflection_success_rate": 1.0,
+    "average_resolution_time_seconds": 1.343,
+    "customer_satisfaction_score": 4.6,
+    "estimated_cost_per_resolution_usd": 0.04
+  }
+}

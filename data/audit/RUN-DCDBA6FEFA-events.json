@@ -1,0 +1,50 @@
+[
+  {
+    "agent": "Supervisor Agent",
+    "action": "plan",
+    "detail": "Classified issue as flight_delay and created execution plan.",
+    "timestamp": "2026-06-17 11:00:16.050638+00:00"
+  },
+  {
+    "agent": "Customer Agent",
+    "action": "retrieve_customer",
+    "detail": "Customer found.",
+    "timestamp": "2026-06-17 11:00:16.052639+00:00"
+  },
+  {
+    "agent": "Booking/Order Agent",
+    "action": "retrieve_order_state",
+    "detail": "Booking=True, refund=True.",
+    "timestamp": "2026-06-17 11:00:16.053638+00:00"
+  },
+  {
+    "agent": "Knowledge Agent",
+    "action": "retrieve_context",
+    "detail": "Retrieved 4 policy and case documents.",
+    "timestamp": "2026-06-17 11:00:16.054638+00:00"
+  },
+  {
+    "agent": "Resolution Agent",
+    "action": "decide",
+    "detail": "Flight delay issue requires passenger care workflow, operational routing, and compensation review.",
+    "timestamp": "2026-06-17 11:00:16.054638+00:00"
+  },
+  {
+    "agent": "Approval Agent",
+    "action": "approve",
+    "detail": "Approval status: manual_required.",
+    "timestamp": "2026-06-17 11:00:16.055637+00:00"
+  },
+  {
+    "agent": "Execution Agent",
+    "action": "hold",
+    "detail": "Manual approval required before execution.",
+    "timestamp": "2026-06-17 11:00:16.055637+00:00"
+  },
+  {
+    "agent": "Verification Agent",
+    "action": "verify",
+    "detail": "{\"ticket_created\": false, \"ticket_status\": null, \"policy_refs_checked\": 3, \"customer_record_verified\": true, \"audit_trail_ready\": true, \"sla_target\": \"2 hours\"}",
+    "timestamp": "2026-06-17 11:00:16.056637+00:00"
+  }
+]

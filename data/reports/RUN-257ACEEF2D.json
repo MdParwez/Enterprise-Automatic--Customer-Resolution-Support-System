@@ -1,0 +1,12 @@
+{
+  "customer_response": "Hi Aarav Mehta, I investigated your case and found ticket INC-75E7228C is now being tracked. Recommended resolution: Update existing ticket INC-75E7228C and notify customer with current status. Target SLA: 24 business hours.",
+  "metrics": {
+    "resolution_success_rate": 1.0,
+    "policy_compliance_rate": 1.0,
+    "tool_call_accuracy": 1.0,
+    "reflection_success_rate": 1.0,
+    "average_resolution_time_seconds": 1.3,
+    "customer_satisfaction_score": 4.6,
+    "estimated_cost_per_resolution_usd": 0.04
+  }
+}

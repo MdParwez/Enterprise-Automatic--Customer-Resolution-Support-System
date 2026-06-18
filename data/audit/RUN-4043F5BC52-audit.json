@@ -1,0 +1,84 @@
+{
+  "run_id": "RUN-4043F5BC52",
+  "issue_type": "refund_delay",
+  "decision": {
+    "issue_type": "refund_delay",
+    "recommended_action": "Create finance escalation incident and offer $25 goodwill credit",
+    "rationale": "Refund has been pending for 12 days; policy threshold is 7 days for proactive escalation.",
+    "risk_level": "low",
+    "compensation_amount": 25.0,
+    "policy_refs": [
+      "Refund Policy",
+      "Compensation Policy"
+    ]
+  },
+  "approval_status": "auto_approved",
+  "execution_status": "completed",
+  "ticket_id": "INC-2516170B",
+  "final_response": "Hi Aarav Mehta, I found that your refund is still pending and created escalation INC-2516170B with our finance team. Based on your account tier and the delay, the recommended resolution is: Create finance escalation incident and offer $25 goodwill credit.",
+  "verification": {
+    "ticket_created": true,
+    "ticket_status": "open",
+    "policy_refs_checked": 2
+  },
+  "metrics": {
+    "resolution_success_rate": 1.0,
+    "policy_compliance_rate": 1.0,
+    "tool_call_accuracy": 1.0,
+    "reflection_success_rate": 1.0,
+    "average_resolution_time_seconds": 0.016,
+    "customer_satisfaction_score": 4.6,
+    "estimated_cost_per_resolution_usd": 0.04
+  },
+  "events": [
+    {
+      "agent": "Supervisor Agent",
+      "action": "plan",
+      "detail": "Classified issue as refund_delay and created execution plan.",
+      "timestamp": "2026-06-17 10:47:22.479780+00:00"
+    },
+    {
+      "agent": "Customer Agent",
+      "action": "retrieve_customer",
+      "detail": "Customer found.",
+      "timestamp": "2026-06-17 10:47:22.479780+00:00"
+    },
+    {
+      "agent": "Booking/Order Agent",
+      "action": "retrieve_order_state",
+      "detail": "Booking=True, refund=True.",
+      "timestamp": "2026-06-17 10:47:22.486292+00:00"
+    },
+    {
+      "agent": "Knowledge Agent",
+      "action": "retrieve_context",
+      "detail": "Retrieved 4 policy and case documents.",
+      "timestamp": "2026-06-17 10:47:22.486292+00:00"
+    },
+    {
+      "agent": "Resolution Agent",
+      "action": "decide",
+      "detail": "Refund has been pending for 12 days; policy threshold is 7 days for proactive escalation.",
+      "timestamp": "2026-06-17 10:47:22.486292+00:00"
+    },
+    {
+      "agent": "Approval Agent",
+      "action": "approve",
+      "detail": "Approval status: auto_approved.",
+      "timestamp": "2026-06-17 10:47:22.486292+00:00"
+    },
+    {
+      "agent": "Execution Agent",
+      "action": "create_incident",
+      "detail": "Created incident INC-2516170B.",
+      "timestamp": "2026-06-17 10:47:22.486292+00:00"
+    },
+    {
+      "agent": "Verification Agent",
+      "action": "verify",
+      "detail": "{\"ticket_created\": true, \"ticket_status\": \"open\", \"policy_refs_checked\": 2}",
+      "timestamp": "2026-06-17 10:47:22.486292+00:00"
+    }
+  ],
+  "saved_at": "2026-06-17T10:47:22.496491+00:00"
+}

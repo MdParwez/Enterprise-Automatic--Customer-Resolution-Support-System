@@ -1,0 +1,12 @@
+{
+  "customer_response": "Hi Aarav Mehta, I checked ticket INC-9193E5B3. Current status: open. Owner: Payments Team. I will keep tracking it and update you when the next team update arrives.",
+  "metrics": {
+    "resolution_success_rate": 1.0,
+    "policy_compliance_rate": 1.0,
+    "tool_call_accuracy": 1.0,
+    "reflection_success_rate": 1.0,
+    "average_resolution_time_seconds": 8.675,
+    "customer_satisfaction_score": 4.6,
+    "estimated_cost_per_resolution_usd": 0.04
+  }
+}
