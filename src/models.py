@@ -5,6 +5,7 @@ from uuid import uuid4
 from pydantic import BaseModel, Field
 
 
+<<<<<<< HEAD
 IssueType = Literal[
     "refund_delay",
     "flight_delay",
@@ -16,6 +17,9 @@ IssueType = Literal[
     "complaint",
     "general",
 ]
+=======
+IssueType = Literal["refund_delay", "flight_delay", "baggage", "billing", "subscription", "account", "general"]
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
 ApprovalStatus = Literal["auto_approved", "manual_required", "rejected"]
 ExecutionStatus = Literal["pending", "completed", "failed"]
 
@@ -54,8 +58,11 @@ class Decision(BaseModel):
     approval_reason: str = ""
     risk_flags: list[str] = Field(default_factory=list)
     next_best_actions: list[str] = Field(default_factory=list)
+<<<<<<< HEAD
     ai_provider: str = "local_rules"
     ai_summary: str = ""
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
 
 
 class ResolutionResponse(BaseModel):
@@ -74,6 +81,9 @@ class ResolutionResponse(BaseModel):
     evidence: list[dict[str, Any]] = Field(default_factory=list)
     automation_trace: list[dict[str, Any]] = Field(default_factory=list)
     unique_features: list[str] = Field(default_factory=list)
+<<<<<<< HEAD
     workflow_status: dict[str, Any] = Field(default_factory=dict)
     internal_updates: list[dict[str, Any]] = Field(default_factory=list)
     tool_call_log: list[dict[str, Any]] = Field(default_factory=list)
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539

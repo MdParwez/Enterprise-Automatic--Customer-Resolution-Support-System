@@ -72,8 +72,12 @@ async function sendIssue(message) {
   }
 
   addMessage("user", payload.customer_id, payload.message);
+<<<<<<< HEAD
   addMessage("agent", "OmniSupport AI", "I am starting the investigation. I will check tickets first, then customer/order data, vector knowledge, risk, and workflow routing.");
   renderProcessingAgents();
+=======
+  addMessage("agent", "ERA Assistant", "I am checking the customer record, matching the right policy, and preparing the safest resolution.");
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
   $("sendBtn").disabled = true;
   $("sendBtn").textContent = "Working";
 
@@ -86,7 +90,10 @@ async function sendIssue(message) {
     if (!response.ok) throw new Error(`Resolve failed: ${response.status}`);
     state.result = await response.json();
     renderResult(state.result);
+<<<<<<< HEAD
     renderAgentRoom(state.result);
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
     renderAgentReply(state.result);
     await loadRuns();
     await loadStats();
@@ -98,6 +105,7 @@ async function sendIssue(message) {
   }
 }
 
+<<<<<<< HEAD
 function renderProcessingAgents() {
   const steps = [
     ["Supervisor", "Understanding request and assigning investigation tasks"],
@@ -125,6 +133,8 @@ function renderAgentRoom(result) {
     : "<div class=\"agent-card idle\"><strong>Supervisor</strong><span>No activity yet</span></div>";
 }
 
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
 function renderAgentReply(result) {
   const decision = result.decision;
   const needsManual = result.approval_status === "manual_required";
@@ -149,6 +159,7 @@ function renderResult(result) {
   $("confidence").textContent = percent(decision.confidence_score);
   $("risk").textContent = decision.risk_level;
   $("sla").textContent = decision.sla_target;
+<<<<<<< HEAD
   $("agentProvider").textContent = decision.ai_provider || "local_rules";
 
   const customer = result.case_context?.customer;
@@ -157,6 +168,11 @@ function renderResult(result) {
   renderWorkflow(result.workflow_status || {});
   renderInternalUpdates(result.internal_updates || []);
   renderToolCalls(result.tool_call_log || []);
+=======
+
+  const customer = result.case_context?.customer;
+  if (customer?.tier) $("customerTier").textContent = customer.tier;
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
 
   $("trace").innerHTML = (result.automation_trace || [])
     .map((item) => `<div class="timeline-item"><strong>${item.stage}</strong><span>${item.status}: ${item.summary}</span></div>`)
@@ -180,6 +196,7 @@ function renderResult(result) {
   }
 }
 
+<<<<<<< HEAD
 function renderActiveTickets(tickets) {
   $("activeTickets").innerHTML = tickets.length
     ? tickets.slice(0, 4).map((ticket) => `<div class="mini-row"><span>${escapeHtml(ticket.ticket_id)}</span><strong>${escapeHtml(ticket.status)}</strong></div>`).join("")
@@ -204,6 +221,8 @@ function renderToolCalls(calls) {
     : "<div class=\"run-item\"><span>No tool calls yet</span><strong>--</strong></div>";
 }
 
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
 async function approvePending() {
   if (!state.pendingManual) return;
   const result = state.pendingManual;
@@ -273,7 +292,11 @@ function resetChat() {
   state.result = null;
   state.pendingManual = null;
   $("chatStream").innerHTML = "";
+<<<<<<< HEAD
   addMessage("agent", "OmniSupport AI", "New case started. Send the next customer issue when ready.");
+=======
+  addMessage("agent", "ERA Assistant", "New case started. Send the next customer issue when ready.");
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
   $("approveBtn").disabled = true;
   $("approvalHint").textContent = "No manual approval waiting.";
   $("ticket").textContent = "--";
@@ -281,6 +304,7 @@ function resetChat() {
   $("approval").textContent = "Waiting";
   $("decisionTitle").textContent = "Resolution will appear here";
   $("decisionRationale").textContent = "The agent will explain why it selected a playbook and whether a human approval is required.";
+<<<<<<< HEAD
   renderActiveTickets([]);
   renderWorkflow({});
   renderInternalUpdates([]);
@@ -291,6 +315,8 @@ function resetChat() {
     <div class="agent-card idle"><strong>Ticket Agent</strong><span>Ready to check active cases</span></div>
     <div class="agent-card idle"><strong>Knowledge Agent</strong><span>Ready to search vector knowledge</span></div>
   `;
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
 }
 
 document.querySelectorAll(".scenario").forEach((button) => {
@@ -314,4 +340,7 @@ $("loadRunsBtn").addEventListener("click", loadRuns);
 checkHealth();
 loadRuns();
 loadStats();
+<<<<<<< HEAD
 renderWorkflow({});
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539

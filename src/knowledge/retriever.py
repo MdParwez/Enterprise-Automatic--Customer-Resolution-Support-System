@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+<<<<<<< HEAD
 import hashlib
 import math
 
@@ -10,6 +11,8 @@ except ImportError:  # pragma: no cover - fallback path for minimal installs
     Distance = None
     PointStruct = None
     VectorParams = None
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
 
 
 @dataclass(frozen=True)
@@ -109,6 +112,7 @@ LOCAL_KNOWLEDGE = [
 
 
 class KnowledgeRetriever:
+<<<<<<< HEAD
     def __init__(self) -> None:
         self.vector_size = 48
         self.documents = LOCAL_KNOWLEDGE
@@ -188,3 +192,13 @@ class KnowledgeRetriever:
             self.qdrant.upsert(collection_name=self.collection_name, points=points)
         except Exception:
             self.qdrant = None
+=======
+    def search(self, query: str, limit: int = 4) -> list[KnowledgeDocument]:
+        query_terms = {term.strip(".,!?").lower() for term in query.split() if len(term) > 2}
+        ranked: list[KnowledgeDocument] = []
+        for document in LOCAL_KNOWLEDGE:
+            haystack = f"{document.title} {document.content}".lower()
+            score = sum(1 for term in query_terms if term in haystack)
+            ranked.append(KnowledgeDocument(document.collection, document.title, document.content, float(score)))
+        return sorted(ranked, key=lambda item: item.score, reverse=True)[:limit]
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539

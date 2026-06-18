@@ -13,6 +13,7 @@ class DatabaseMCP:
 
     def get_customer_history(self, customer_id: str) -> list[dict]:
         return fetch_all("SELECT * FROM tickets WHERE customer_id = ? ORDER BY created_at DESC", (customer_id,))
+<<<<<<< HEAD
 
     def get_active_tickets(self, customer_id: str, issue_type: str | None = None) -> list[dict]:
         if issue_type:
@@ -27,3 +28,5 @@ class DatabaseMCP:
 
     def get_ticket(self, ticket_id: str) -> dict | None:
         return fetch_one("SELECT * FROM tickets WHERE ticket_id = ?", (ticket_id,))
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539

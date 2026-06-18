@@ -11,10 +11,13 @@ class Settings(BaseSettings):
     audit_dir: Path = Field(default=Path("data/audit"))
     reports_dir: Path = Field(default=Path("data/reports"))
 
+<<<<<<< HEAD
     ai_provider: str = "local"
     groq_api_key: str | None = None
     groq_model: str = "llama-3.3-70b-versatile"
 
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
     openai_api_key: str | None = None
     azure_openai_endpoint: str | None = None
     azure_openai_api_key: str | None = None

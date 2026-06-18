@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import json
+<<<<<<< HEAD
 import re
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
 
 from langgraph.graph import END, StateGraph
 
@@ -9,7 +12,10 @@ from src.agents.state import ERAState, add_event, initial_state
 from src.database.sqlite import initialize_database, record_agent_run, seed_database
 from src.evaluation.metrics import build_metrics
 from src.knowledge.retriever import KnowledgeRetriever
+<<<<<<< HEAD
 from src.llm.groq_client import LLMResolutionAdvisor
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
 from src.mcp_servers.database_mcp import DatabaseMCP
 from src.mcp_servers.filesystem_mcp import FilesystemMCP
 from src.mcp_servers.servicenow_mcp import ServiceNowMCP
@@ -24,7 +30,10 @@ class AgentWorkflow:
         self.filesystem = FilesystemMCP()
         self.servicenow = ServiceNowMCP()
         self.knowledge = KnowledgeRetriever()
+<<<<<<< HEAD
         self.llm = LLMResolutionAdvisor()
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         self.graph = self._build_graph()
 
     def run(self, issue: CustomerIssue) -> ResolutionResponse:
@@ -52,9 +61,12 @@ class AgentWorkflow:
             evidence=state.get("knowledge", []),
             automation_trace=state.get("automation_trace", []),
             unique_features=state.get("unique_features", []),
+<<<<<<< HEAD
             workflow_status=state.get("workflow_status", {}),
             internal_updates=state.get("internal_updates", []),
             tool_call_log=state.get("tool_call_log", []),
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         )
         record_agent_run(issue.run_id, decision.issue_type, decision.model_dump_json(), response.execution_status)
         self.filesystem.save_logs(issue.run_id, [event.model_dump() for event in state["events"]])
@@ -66,7 +78,10 @@ class AgentWorkflow:
         graph = StateGraph(ERAState)
         graph.add_node("supervisor", self.supervisor_agent)
         graph.add_node("customer_agent", self.customer_agent)
+<<<<<<< HEAD
         graph.add_node("ticket_agent", self.ticket_agent)
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         graph.add_node("booking_agent", self.booking_agent)
         graph.add_node("knowledge_agent", self.knowledge_agent)
         graph.add_node("resolution_agent", self.resolution_agent)
@@ -77,8 +92,12 @@ class AgentWorkflow:
 
         graph.set_entry_point("supervisor")
         graph.add_edge("supervisor", "customer_agent")
+<<<<<<< HEAD
         graph.add_edge("customer_agent", "ticket_agent")
         graph.add_edge("ticket_agent", "booking_agent")
+=======
+        graph.add_edge("customer_agent", "booking_agent")
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         graph.add_edge("booking_agent", "knowledge_agent")
         graph.add_edge("knowledge_agent", "resolution_agent")
         graph.add_edge("resolution_agent", "approval_agent")
@@ -95,10 +114,13 @@ class AgentWorkflow:
             issue_type = "baggage"
         elif "bill" in message or "charge" in message:
             issue_type = "billing"
+<<<<<<< HEAD
         elif "ticket" in message and any(term in message for term in ["status", "where", "update", "progress"]):
             issue_type = "ticket_status"
         elif "complaint" in message or "complain" in message:
             issue_type = "complaint"
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         elif "subscription" in message:
             issue_type = "subscription"
         elif "account" in message or "login" in message:
@@ -107,6 +129,7 @@ class AgentWorkflow:
             issue_type = "flight_delay"
         if "refund" in message:
             issue_type = "refund_delay"
+<<<<<<< HEAD
         if "ticket" in message and any(term in message for term in ["status", "where", "update", "progress"]):
             issue_type = "ticket_status"
 
@@ -118,11 +141,22 @@ class AgentWorkflow:
             "Search policies and historical cases",
             "Decide whether to update, auto-resolve, escalate, or ask for human help",
             "Track progress and keep the customer updated",
+=======
+
+        state["issue_type"] = issue_type
+        state["plan"] = [
+            "Retrieve customer context",
+            "Retrieve booking/order and payment state",
+            "Search policies and historical cases",
+            "Recommend compliant resolution",
+            "Approve, execute, verify, and record audit trail",
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         ]
         state["automation_trace"] = [
             {"stage": "intake", "status": "complete", "summary": "Issue classified and routed by supervisor."}
         ]
         state["unique_features"] = [
+<<<<<<< HEAD
             "Investigates before creating tickets",
             "Routes work across AI agents and human teams",
             "Uses policy evidence and historical resolutions",
@@ -133,6 +167,15 @@ class AgentWorkflow:
         state["workflow_status"] = {"phase": "investigating", "owner": "Supervisor", "progress": 10}
         state["internal_updates"] = []
         state["tool_call_log"] = []
+=======
+            "Policy-grounded autonomous resolution",
+            "Human-in-the-loop approval gates",
+            "Verification before customer response",
+            "Reflection loop for failed execution",
+            "Audit-ready evidence and tool trace",
+            "Multi-domain support: refunds, flights, baggage, billing, subscriptions, accounts",
+        ]
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         return add_event(state, "Supervisor Agent", "plan", f"Classified issue as {issue_type} and created execution plan.")
 
     def customer_agent(self, state: ERAState) -> ERAState:
@@ -140,6 +183,7 @@ class AgentWorkflow:
         state["customer"] = self.database.get_customer(issue.customer_id)
         state["customer_history"] = self.database.get_customer_history(issue.customer_id)
         state["tool_calls"] = state.get("tool_calls", 0) + 2
+<<<<<<< HEAD
         state.setdefault("tool_call_log", []).extend(
             [
                 {"tool": "Database MCP", "operation": "get_customer", "status": "success" if state["customer"] else "not_found"},
@@ -147,12 +191,15 @@ class AgentWorkflow:
             ]
         )
         state["workflow_status"] = {"phase": "customer_identified", "owner": "Customer Agent", "progress": 25}
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         state.setdefault("automation_trace", []).append(
             {"stage": "customer_context", "status": "complete", "summary": "Loaded profile, tier, and previous ticket history."}
         )
         detail = "Customer found." if state["customer"] else "Customer not found."
         return add_event(state, "Customer Agent", "retrieve_customer", detail)
 
+<<<<<<< HEAD
     def ticket_agent(self, state: ERAState) -> ERAState:
         customer = state.get("customer")
         requested_ticket_id = self._extract_ticket_id(state["issue"].message)
@@ -180,6 +227,8 @@ class AgentWorkflow:
         )
         return add_event(state, "Ticket Agent", "check_existing_tickets", summary)
 
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
     def booking_agent(self, state: ERAState) -> ERAState:
         customer = state.get("customer")
         if customer:
@@ -195,6 +244,7 @@ class AgentWorkflow:
             "customer": state.get("customer"),
             "booking": booking,
             "refund": refund,
+<<<<<<< HEAD
             "active_tickets": state.get("active_tickets", []),
             "existing_ticket": state.get("existing_ticket"),
             "requested_ticket_id": state.get("requested_ticket_id"),
@@ -208,6 +258,11 @@ class AgentWorkflow:
             ]
         )
         state["workflow_status"] = {"phase": "operations_checked", "owner": "Order Agent", "progress": 50}
+=======
+            "history_count": len(state.get("customer_history", [])),
+            "detected_entities": self._extract_entities(state["issue"].message),
+        }
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         state.setdefault("automation_trace", []).append(
             {"stage": "operational_lookup", "status": "complete", "summary": "Resolved customer, booking, refund, and history records from SQLite."}
         )
@@ -218,10 +273,13 @@ class AgentWorkflow:
         results = self.knowledge.search(query)
         state["knowledge"] = [result.__dict__ for result in results]
         state["tool_calls"] = state.get("tool_calls", 0) + 1
+<<<<<<< HEAD
         state.setdefault("tool_call_log", []).append(
             {"tool": "Knowledge Base MCP", "operation": "search_policy_and_cases", "status": "success"}
         )
         state["workflow_status"] = {"phase": "policy_checked", "owner": "Policy and Knowledge Agents", "progress": 65}
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         state.setdefault("automation_trace", []).append(
             {"stage": "rag", "status": "complete", "summary": f"Retrieved {len(results)} policies and similar cases from the knowledge layer."}
         )
@@ -234,6 +292,7 @@ class AgentWorkflow:
         tier = customer.get("tier", "standard")
         issue_type = state["issue_type"]
         playbook = self._playbook(issue_type, days_pending, tier)
+<<<<<<< HEAD
         refined = self.llm.refine_resolution(
             issue_message=state["issue"].message,
             issue_type=issue_type,
@@ -242,6 +301,8 @@ class AgentWorkflow:
             playbook=playbook,
         )
         playbook = {**playbook, **{key: value for key, value in refined.items() if value not in (None, "", [])}}
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         compensation = playbook["compensation_amount"]
         decision = Decision(
             issue_type=issue_type,
@@ -255,6 +316,7 @@ class AgentWorkflow:
             approval_reason=playbook["approval_reason"],
             risk_flags=playbook["risk_flags"],
             next_best_actions=playbook["next_best_actions"],
+<<<<<<< HEAD
             ai_provider=playbook.get("ai_provider", "local_rules"),
             ai_summary=playbook.get("ai_summary", ""),
         )
@@ -277,17 +339,26 @@ class AgentWorkflow:
                 "status": "complete",
                 "summary": f"Selected {issue_type} playbook with {decision.confidence_score:.0%} confidence using {decision.ai_provider}.",
             }
+=======
+        )
+        state["decision"] = decision
+        state.setdefault("automation_trace", []).append(
+            {"stage": "reasoning", "status": "complete", "summary": f"Selected {issue_type} playbook with {decision.confidence_score:.0%} confidence."}
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         )
         return add_event(state, "Resolution Agent", "decide", decision.rationale)
 
     def approval_agent(self, state: ERAState) -> ERAState:
         decision = state["decision"]
         state["approval_status"] = "auto_approved" if decision.risk_level == "low" else "manual_required"
+<<<<<<< HEAD
         state["workflow_status"] = {
             "phase": "approved" if state["approval_status"] == "auto_approved" else "awaiting_human_review",
             "owner": "Approval Agent" if state["approval_status"] == "auto_approved" else "Human Collaboration Agent",
             "progress": 86,
         }
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         state.setdefault("automation_trace", []).append(
             {"stage": "approval", "status": state["approval_status"], "summary": decision.approval_reason}
         )
@@ -296,14 +367,18 @@ class AgentWorkflow:
     def execution_agent(self, state: ERAState) -> ERAState:
         if state["approval_status"] != "auto_approved":
             state["ticket"] = None
+<<<<<<< HEAD
             state.setdefault("internal_updates", []).append(
                 {"team": self._team_for_issue(state["decision"].issue_type), "message": "Waiting for manager review before execution.", "status": "waiting"}
             )
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
             state.setdefault("automation_trace", []).append(
                 {"stage": "execution", "status": "held", "summary": "Execution paused for manual approver review."}
             )
             return add_event(state, "Execution Agent", "hold", "Manual approval required before execution.")
         description = f"{state['decision'].recommended_action}. Customer message: {state['issue'].message}"
+<<<<<<< HEAD
         if state.get("existing_ticket") and state["decision"].issue_type == "ticket_status":
             state["ticket"] = state["existing_ticket"]
             operation = "get_ticket_status"
@@ -328,6 +403,14 @@ class AgentWorkflow:
             {"stage": "execution", "status": "complete", "summary": summary}
         )
         return add_event(state, "Execution Agent", operation, summary)
+=======
+        state["ticket"] = self.servicenow.create_incident(state["issue"].customer_id, state["decision"].issue_type, description)
+        state["tool_calls"] = state.get("tool_calls", 0) + 1
+        state.setdefault("automation_trace", []).append(
+            {"stage": "execution", "status": "complete", "summary": f"Created ServiceNow-style incident {state['ticket']['ticket_id']}."}
+        )
+        return add_event(state, "Execution Agent", "create_incident", f"Created incident {state['ticket']['ticket_id']}.")
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
 
     def verification_agent(self, state: ERAState) -> ERAState:
         ticket = state.get("ticket")
@@ -343,6 +426,7 @@ class AgentWorkflow:
         state["tool_calls"] = state.get("tool_calls", 0) + 1
         if verified_ticket:
             name = (state.get("customer") or {}).get("name", "there")
+<<<<<<< HEAD
             if state["decision"].issue_type == "ticket_status":
                 state["final_response"] = (
                     f"Hi {name}, I checked ticket {ticket['ticket_id']}. Current status: "
@@ -356,16 +440,26 @@ class AgentWorkflow:
                     f"Recommended resolution: {state['decision'].recommended_action}. "
                     f"Target SLA: {state['decision'].sla_target}."
                 )
+=======
+            state["final_response"] = (
+                f"Hi {name}, I investigated your case and created escalation {ticket['ticket_id']}. "
+                f"Recommended resolution: {state['decision'].recommended_action}. "
+                f"Target SLA: {state['decision'].sla_target}."
+            )
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         else:
             state["final_response"] = "I could not complete the autonomous execution, so this case needs manual review."
         state.setdefault("automation_trace", []).append(
             {"stage": "verification", "status": "complete" if verified_ticket else "failed", "summary": "Checked ticket state, policy evidence, and audit readiness."}
         )
+<<<<<<< HEAD
         state["workflow_status"] = {
             "phase": "customer_updated" if verified_ticket else "needs_review",
             "owner": "Notification Agent" if verified_ticket else "Human Collaboration Agent",
             "progress": 100 if verified_ticket else 88,
         }
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
         return add_event(state, "Verification Agent", "verify", json.dumps(state["verification"]))
 
     def reflection_agent(self, state: ERAState) -> ERAState:
@@ -396,6 +490,7 @@ class AgentWorkflow:
             "urgency": "high" if any(term in lowered for term in ["urgent", "immediately", "asap"]) else "normal",
         }
 
+<<<<<<< HEAD
     def _extract_ticket_id(self, message: str) -> str | None:
         match = re.search(r"\b(?:INC|TKT|CASE)-[A-Z0-9]{6,12}\b", message.upper())
         return match.group(0) if match else None
@@ -412,6 +507,8 @@ class AgentWorkflow:
             "complaint": "Customer Care Team",
         }.get(issue_type, "Support Triage")
 
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
     def _playbook(self, issue_type: str, days_pending: int, tier: str) -> dict:
         tier_bonus = tier in {"platinum", "gold"}
         playbooks = {
@@ -481,6 +578,7 @@ class AgentWorkflow:
                 "risk_flags": ["identity_verification_required", "account_takeover_risk"],
                 "next_best_actions": ["Run identity checks", "Review login history", "Escalate to security queue"],
             },
+<<<<<<< HEAD
             "ticket_status": {
                 "recommended_action": "Check existing ticket status and update the customer",
                 "rationale": "The customer is asking for progress on an existing support case.",
@@ -503,6 +601,8 @@ class AgentWorkflow:
                 "risk_flags": ["customer_escalation", "reputation_risk"],
                 "next_best_actions": ["Create complaint case", "Assign customer care", "Notify customer with case ID"],
             },
+=======
+>>>>>>> f0cc8763078e8a8235c2a0c24a43013c507bb539
             "general": {
                 "recommended_action": "Create support triage incident and request missing details",
                 "rationale": "Issue is not specific enough for autonomous execution.",
